@@ -1,0 +1,35 @@
+
+// ECE:3350 SISC processor project
+
+// Example data for the multiplication program
+
+//
+
+//00000007 // :0  A = 7
+
+//00000009 // :1  B = 9
+
+//00000000 // :2  Addresses 2 & 3 are where the 64-bit result A*B should be stored
+
+//00000000 // :3
+
+00000000 //00: NOP
+88000007 //01: ADI R0, R0 , 7  R0 = 7
+88110009 //02: ADI R1, R1, 8   R1 = 9
+88440007 //03: ADI R4,R4, 12
+
+
+/*80334001		//03:L1:  ADD, R3, R4, R0
+54000001		// BRR    if CC != 4  Branch to L2 if no overflow 
+88220001		// 		  ADI, R2, R2, 1  Increment R2 if overflow	
+8811FFFF		// L2:	  ADi  R1, R1, -1  Decrement R0
+7100FFFB		// BNR    if R0 >0
+F0000000		//Halt*/
+
+80334001		// 04: L1:  ADD, R3, R3, R4
+44000007		// 05: BRR    if CC == 4  Branch to L2 if no overflow 
+60000008		// 06: else: unconditional past overflow check
+88220001		// 07:    ADI, R2, R2, 1  Increment R2 if overflow	
+8811FFFF		// 08: L2:	  ADI  R1, R1, -1  Decrement R0
+7100FFFA	// BNR    if R0 >0
+F0000000		//Halt

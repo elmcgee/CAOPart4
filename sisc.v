@@ -1,0 +1,71 @@
+// ECE:3350 SISC processor project
+// main SISC module, part 1
+
+`timescale 1ns/100ps  
+
+module sisc (clk, rst_f, ir);
+
+  input clk, rst_f;
+  input [31:0] ir;
+
+// declare all internal wires here
+	wire [3:0] stat;
+	wire [3:0] cc;
+	wire [31:0] write_data;
+	wire [31:0] RSA;
+	wire [31:0] RSB;
+	wire [1:0] alu_op, wb_sel,mm_sel;
+	wire clk, rst_f, rf_we, stat_en, rd_sel, br_sel, pc_rst, pc_write, pc_sel, ir_load;
+	wire [31:0] alu_result;
+	wire [31:0] ir;
+	wire [3:0] regB;
+	wire [3:0] write_reg;
+	wire [31:0] read_data;
+	wire [15:0] pc_outToImOrBR;
+	wire [15:0] br_addr;
+	wire [15:0] imm; 
+	wire [15:0] mux16_out;
+	wire [31:0] dm_out;
+	wire dm_we,mux5_sel;
+	
+	
+// component instantiation goes here
+	/*alu a1(clk, RSA, RSB, ir[15:0], alu_op, alu_result, cc, stat_en);
+	rf RF1(clk, ir[19:16], regB, ir[23:20], write_data, rf_we, RSA, RSB);
+	statreg s1(clk, cc, stat_en, stat);
+	//ctrl c1(clk, rst_f, ir[31:28], ir[27:24], stat, rf_we, alu_op, wb_sel, rd_sel, br_sel, pc_rst, pc_write, pc_sel, ir_load);//Update*/
+	//mux32 m32(alu_result, 32'h00000000, wb_sel, write_data);
+	/*mux4 m4(ir[15:12], ir[23:20], rd_sel, regB);
+	br br1(pc_outToImOrBR, ir[15:0], br_sel, br_addr);
+	ir ir1(clk, ir_load, read_data, ir);
+	pc pc1(clk, br_addr, pc_sel, pc_write, pc_rst, pc_outToImOrBR);
+	im im1(pc_outToImOrBR, read_data);
+	//dm dml(mux16_out, mux16_out, RSB, dm_we, read_data);
+	//mux16 m16(alu_result[15:0], ir[15:0], mm_sel, mux16_out);*/
+
+//Part3
+//replace ir[23:20] w/ mux5_out for rf
+	alu a1(clk, RSA, RSB, ir[15:0], alu_op, alu_result, cc, stat_en);
+	rf RF1(clk, ir[19:16], regB, write_reg, write_data, rf_we, RSA, RSB);
+	statreg s1(clk, cc, stat_en, stat);
+	ctrl c1(clk, rst_f, ir[31:28], ir[27:24], stat, rf_we, alu_op, wb_sel, rd_sel, br_sel, pc_rst, pc_write, pc_sel, ir_load, dm_we,mm_sel,mux5_sel);//Update
+	mux32 m32(alu_result, dm_out, RSA, RSB, wb_sel, write_data);
+	mux4 m4(ir[15:12], ir[23:20], rd_sel, regB);
+	br br1(pc_outToImOrBR, ir[15:0], br_sel, br_addr);
+	ir ir1(clk, ir_load, read_data, ir);
+	pc pc1(clk, br_addr, pc_sel, pc_write, pc_rst, pc_outToImOrBR);
+	im im1(pc_outToImOrBR, read_data);
+	mux16 m16(alu_result[15:0], ir[15:0], RSA[15:0], mm_sel, mux16_out);
+	dm dml(mux16_out, mux16_out, RSB, dm_we, dm_out);
+	mux4 m5(ir[19:16],ir[23:20],mux5_sel,write_reg);
+	
+	
+	
+
+  initial
+ 	begin
+// pt a $monitor statement here.  
+ $monitor($time,,, "ir=%h, pc=%h, R1=%h, R2=%h, R3=%h, R4=%h, R5=%h, ALU_Result = %h, ALU_OP=%b, MM_sel =%b, M[8] = %h, M[9] = %h, M[3] = %h, Write_data = %h, DM_out = %h", ir,pc_outToImOrBR,RF1.ram_array[1], RF1.ram_array[2], RF1.ram_array[3], RF1.ram_array[4], RF1.ram_array[5], alu_result,alu_op,mm_sel, dml.ram_array[8], dml.ram_array[9],dml.ram_array[3],write_data, dm_out);
+	end
+ 
+endmodule

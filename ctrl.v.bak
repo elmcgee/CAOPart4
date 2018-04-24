@@ -1,0 +1,339 @@
+// ECE:3350 SISC computer project
+// finite state machine
+
+`timescale 1ns/100ps
+
+module ctrl (clk, rst_f, opcode, mm, stat, rf_we, alu_op, wb_sel, rd_sel, br_sel, pc_rst, pc_write, pc_sel, ir_load, dm_we, mm_sel, mux5_sel);
+
+  /* TODO: Declare the ports listed above as inputs or outputs */
+  input clk, rst_f;
+  input [3:0] opcode, mm, stat;
+  output reg rf_we, rd_sel, br_sel, pc_rst, pc_write, pc_sel, ir_load, dm_we, mux5_sel;
+  output reg [1:0] alu_op, wb_sel, mm_sel;
+
+  
+  
+  // states
+  parameter start0 = 0, start1 = 1, fetch = 2, decode = 3, execute = 4, mem = 5, writeback = 6;
+   
+  // opcodes
+  parameter NOOP = 0, LOD = 1, STR = 2, SWP = 3, BRA = 4, BRR = 5, BNE = 6, BNR = 7, ALU_OP = 8, HLT=15;
+	
+  // addressing modes
+  parameter am_imm = 8;
+
+  // state registers
+  reg [2:0]  present_state, next_state;
+
+  initial begin
+    present_state = start0;
+	end
+  /* TODO: Write a sequential procedure that progresses the fsm to the next state on the
+       positive edge of the clock, OR resets the state to 'start1' on the negative edge
+       of rst_f. Notice that the computer is reset when rst_f is low, not high. */
+	
+	always @(posedge clk or negedge rst_f)
+	begin
+		if(rst_f == 1'b0)
+			present_state <= start1;
+		else
+			present_state <= next_state;
+	end
+			
+
+  
+  /* TODO: Write a combination procedure that determines the next state of the fsm. */
+	always @(present_state or rst_f)
+	begin
+		case(present_state)
+			start0: next_state <= start1;
+			start1: next_state <= fetch;
+			fetch: next_state <= decode;
+			decode: next_state <= execute;
+			execute: next_state <= mem;
+			mem: next_state <= writeback;
+			writeback: next_state <= fetch;
+		endcase
+	end
+
+
+  /* TODO: Generate outputs based on the FSM states and inputs. For Parts 2, 3 and 4 you will
+       add the new control signals here. */
+	always @(present_state or opcode or mm)
+	begin // wb_sel, rf_we, rd_sel, br_sel, pc_rst, pc_write, pc_sel, ir_load;
+		wb_sel <= 2'b00; rf_we <= 1'b0; alu_op <= 2'b10; pc_write <= 1'b0; pc_rst <= 1'b0; ir_load <= 1'b0; br_sel = 1'b0; pc_sel = 1'b0; rd_sel = 1'b0; mm_sel = 1'b0; dm_we = 1'b0; mux5_sel = 1'b1;
+		if(opcode == NOOP)
+		begin
+			pc_sel <=1'b0; 
+		end
+		case(present_state)
+			start0:
+				begin
+					
+				end
+			start1: 
+				begin
+					pc_rst <= 1;
+					
+				end
+			fetch: 
+				begin
+					
+					pc_write <= 1'b1;
+					ir_load <= 1'b1;
+					mm_sel <= 1'b1;
+					
+				end
+			decode:
+				begin
+				//if(opcode == STR) begin rd_sel <= 1'b1; end
+				
+				if(opcode == BRA || opcode == BNE)
+					br_sel <= 1'b1;
+				if(opcode == BRR || opcode == BNR)
+					br_sel <= 1'b0; 
+
+				/*if ((opcode == BRA || opcode == BRR || opcode == BNE || opcode == BNR) && mm == 4'b0000)
+					pc_write = 1'b1;*/
+				if ((opcode == BRA || opcode == BRR) && (mm & stat) != 4'b0000) 
+					begin
+						pc_write <= 1'b1;
+						pc_sel <= 1'b1; 
+					end
+				if ((opcode == BNE || opcode == BNR) && (mm & stat) == 4'b0000 )
+					begin
+						pc_write <= 1'b1;
+						pc_sel <= 1'b1;
+					end 
+				end
+
+			execute:
+				begin
+					
+					/*if(opcode == ALU_OP) begin
+						//alu_op[1] <= 1'b0;
+						if (mm == 4'b1000) begin
+						alu_op <= 2'b01;
+						end
+						else begin
+						alu_op <= 2'b00;
+						end
+					end*/
+					/*if(opcode == ALU_OP)
+					begin
+						if(mm == 1000) begin
+						alu_op[0] <= 1'b1;
+						alu_op[1]<=1'b0;
+						end
+						else begin
+						alu_op[0] <= 1'b0;
+						alu_op[1]<=1'b0;
+						end
+					end*/
+
+
+					if((opcode == LOD || opcode==STR )&& mm==4'b1000 || mm==4'b1001) begin
+						alu_op[1] <= 1'b0;
+						alu_op[0] <= 1'b1;
+					end
+					else if(opcode == LOD || opcode==STR && mm==4'b0000) begin
+						alu_op[1] <= 1'b0;
+						alu_op[0] <= 1'b0;
+					end
+					
+					
+					/*if((opcode == LOD || opcode==STR )&& mm==4'b0000 && mm== 4'b0001) begin
+						alu_op[1] <= 1'b0;
+						alu_op[0] <= 1'b0;
+					end
+					else if((opcode == LOD || opcode==STR )) begin
+						alu_op[1] <= 1'b0;
+						alu_op[0] <= 1'b1;
+					end*/
+					
+					/*if((opcode == LOD || opcode==STR )) begin
+						if (mm == 4'b1000) begin
+						alu_op[1] <= 1'b0;
+						alu_op[0] <= 1'b0;
+						end
+						else begin
+						alu_op[1] <= 1'b1;
+						alu_op[0] <= 1'b1;
+						end
+					end*/
+				end
+					
+			mem:
+				begin
+					
+					if({opcode, mm} == 8'b10001000)
+					begin
+						alu_op[0] <= 1'b1;
+						alu_op[1]<=1'b0;
+					end
+					else if (opcode == ALU_OP) 
+					begin
+						alu_op[0] <= 1'b0;
+						alu_op[1]<=1'b0;
+					end
+
+					if((opcode == STR) ||(opcode == LOD))
+					begin
+						rd_sel <= 1'b1;
+						if(mm == 4'b1000)
+							begin
+								mm_sel <= 2'b00;
+								//wb_sel <= 1'b1;
+							end
+						else if (mm == 4'b1001)
+							begin
+								mm_sel <= 2'b00;
+								//wb_sel <= 2'b00;
+								mux5_sel <= 1'b0;
+								rf_we <= 1'b1;
+							end
+						else if (mm == 4'b0001)
+							begin
+								alu_op[0] <= 1'b1;
+								mm_sel <= 2'b10;
+							end
+						/*else if (mm == 4'b0001)
+								begin
+									alu_op[0] <= 1'b1;
+									mux5_sel <= 1'b0;
+									wb_sel <= 2'b00;
+									rf_we <= 1'b1;
+									mm_sel <= 2'b10;
+								end*/
+
+						else 
+							begin
+								mm_sel <= 2'b01;
+							end
+
+					end
+
+					else 
+						begin
+							rd_sel <= 1'b1;
+							mm_sel <= 2'b00;
+						end
+
+					if(opcode == STR) 
+						begin
+							dm_we <= 1'b1;
+							/*if (mm == 4'b0001)
+								begin
+									//mux5_sel <= 1'b0;
+									//wb_sel <= 2'b01;
+									//rf_we <= 1'b1;
+								end*/
+						end
+
+					else 
+						begin		
+							dm_we <= 1'b0;
+						end
+
+					if(opcode == LOD) 
+						begin
+							wb_sel <= 2'b01;
+							rf_we <= 1'b1;
+							if (mm == 4'b1001)
+								begin
+									mux5_sel <= 1'b1;
+								end
+						end
+
+					else 
+						begin		
+							wb_sel <= 2'b00;
+						end
+					if (opcode == SWP)
+						begin
+							mux5_sel <= 1'b1;
+							rd_sel <= 1'b1;
+							wb_sel <= 2'b00;
+							rf_we <= 1'b1;
+						end
+
+					/*if (opcode == SWP)
+						begin
+							mux5_sel <= 1'b0;
+							rd_sel <= 1'b1;
+							wb_sel <= 2'b11;
+							rf_we <= 1'b1;
+						end*/
+				end
+			writeback:
+				begin 
+					//rf_we <= 1'b0;
+					if(opcode == ALU_OP)
+						begin
+							rf_we <= 1'b1; 
+						end
+
+					/*if (opcode == SWP)
+						begin
+							mux5_sel <= 1'b1;
+							rd_sel <= 1'b1;
+							wb_sel <= 2'b10;
+							rf_we <= 1'b1;
+						end*/
+
+					if (opcode == SWP)
+						begin
+							mux5_sel <= 1'b0;
+							rd_sel <= 1'b1;
+							wb_sel <= 2'b11;
+							rf_we <= 1'b1;
+						end
+
+					if (opcode == STR || opcode == LOD)
+						begin
+							if (mm == 4'b0001)
+								begin		
+									mux5_sel <= 1'b0;
+									wb_sel <= 2'b00;
+									rf_we <= 1'b1;
+								end
+						end
+
+					if (opcode == LOD)
+						begin
+							if (mm == 4'b1001)
+								begin		
+									mux5_sel <= 1'b0;
+									wb_sel <= 2'b00;
+									rf_we <= 1'b1;
+								end
+						end
+									
+					/*if({opcode, mm} == 8'b10001000)
+					begin
+						alu_op[0] <= 1;
+						alu_op[1]<=0;
+					end
+					else if (opcode == ALU_OP) 
+					begin
+						alu_op[0] <= 0;
+						alu_op[1]<=0;
+					end
+					*/		
+					 
+				end
+		endcase
+	end
+// Halt on HLT instruction
+  
+  always @ (opcode)
+  begin
+    if (opcode == HLT)
+    begin 
+      #5 $display ("Halt."); //Delay 5 ns so $monitor will print the halt instruction
+      $stop;
+    end
+  end
+    
+  
+endmodule

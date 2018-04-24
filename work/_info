@@ -1,0 +1,342 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dH:/Desktop/CAO_Part3/PART 2_to_3/Alter_for_Part3
+T_opt
+!s110 1523836712
+V`JOX8dchQSUnWC=RI^k;03
+04 10 4 work sisc_tb_p3 fast 0
+=1-9457a5eda242-5ad3e728-d0-2568
+o-quiet -auto_acc_if_foreign -work work
+Z1 tCvgOpt 0
+n@_opt
+OL;O;10.6a;65
+R0
+valu
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+r1
+!s85 0
+31
+!i10b 1
+!s100 W0L>RIQWAR4jllG6FV6gf1
+Il1BSJBBk<_i<L5OV`lT;z2
+Z3 dH:/Desktop/DARREN PICK THIS ONE FOR PART3
+Z4 w1523483359
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/alu.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/alu.v
+L0 6
+Z5 OL;L;10.6a;65
+Z6 !s108 1524101381.000000
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/alu.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/alu.v|
+!i113 0
+Z7 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+vbr
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 kW=jDhJAFZ;JodM_=1mA_0
+IC^g0@>kF]Cga@A3mSRAme3
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/br.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/br.v
+L0 6
+R5
+R6
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/br.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/br.v|
+!i113 0
+R7
+R1
+vctrl
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 l;c4MEBMaI`[QhD;CWWXG0
+Ic8?fVf=WP<<G]]^5n[UoG0
+R3
+w1524106567
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/ctrl.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/ctrl.v
+L0 6
+R5
+!s108 1524106574.000000
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/ctrl.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/ctrl.v|
+!i113 0
+R7
+R1
+vdm
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 kihl?Qn<PgXhX::X?MDYP2
+I><9;_`i4loX64o4EV[edX3
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/dm.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/dm.v
+L0 6
+R5
+Z8 !s108 1524101382.000000
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/dm.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/dm.v|
+!i113 0
+R7
+R1
+vim
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 YmTHVZdXTiL976]ER;gBQ0
+IBRAHg?SS`j:h3?gAz9OkQ2
+R3
+w1523990045
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/im.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/im.v
+L0 6
+R5
+R8
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/im.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/im.v|
+!i113 0
+R7
+R1
+vir
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 l3Y9Jj382IDORE4aRhmV:3
+I2[P]`4<eNoj@;Pg1dHU2`0
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/ir.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/ir.v
+L0 6
+R5
+R8
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/ir.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/ir.v|
+!i113 0
+R7
+R1
+vmux16
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 VL]i<cn8]j>7<h30nX?eG0
+IN@K34MUQUJ=Te[440V]Aj1
+R3
+w1524098763
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux16.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/mux16.v
+L0 6
+R5
+Z9 !s108 1524101383.000000
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux16.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux16.v|
+!i113 0
+R7
+R1
+vmux32
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 a_3R:mDHe;d<C]I1Q0z[21
+I=B_ECe5?bONmP9IGhc9NK3
+R3
+w1523752207
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux32.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/mux32.v
+L0 6
+R5
+R9
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux32.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux32.v|
+!i113 0
+R7
+R1
+vmux4
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 HRz]=:ikHCjI1m7o^]0YV0
+IGQY3A7NJha3P_]dFH63R21
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux4.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/mux4.v
+L0 6
+R5
+R8
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux4.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux4.v|
+!i113 0
+R7
+R1
+vmux5
+!s110 1524101383
+!i10b 1
+!s100 aY9G[`Y8Wk=Idj3:hdUV71
+Ifnm1@m`hBY<06HP_k5N6o1
+R2
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux5.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/mux5.v
+L0 6
+R5
+r1
+!s85 0
+31
+R9
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux5.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/mux5.v|
+!i113 0
+R7
+R1
+vpc
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 g^<1nG1lh^PTV0;zBeBzj0
+IJEHcoMLD@e;R?Aa]`Qo[`1
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/pc.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/pc.v
+L0 6
+R5
+R9
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/pc.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/pc.v|
+!i113 0
+R7
+R1
+vrf
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 Y]X9S761=bZX00UjaD]Ro3
+I8D4Uk4gZM1_Z::6Gd4j981
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/rf.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/rf.v
+L0 6
+R5
+R9
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/rf.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/rf.v|
+!i113 0
+R7
+R1
+vsisc
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 6YB=Y=DLZR5cTJ`TTEI`I0
+IWB7iI[eOd<gQIDY4go8?b0
+R3
+w1524103109
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc.v
+L0 6
+R5
+!s108 1524104288.000000
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc.v|
+!i113 0
+R7
+R1
+vsisc_tb
+!s110 1524101384
+!i10b 1
+!s100 S@T7HVYad^^fDI@BL?kDX3
+IYCTR[de_NeloCLTGUYY=Z0
+R2
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc_tb_p2.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc_tb_p2.v
+L0 6
+R5
+r1
+!s85 0
+31
+Z10 !s108 1524101384.000000
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc_tb_p2.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc_tb_p2.v|
+!i113 0
+R7
+R1
+vsisc_tb_p3
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 ^KVLaki]_@WRKPV0In62V0
+IclROH0=@7KM>W`je:69hc3
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc_tb_p3.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc_tb_p3.v
+L0 6
+R5
+R10
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc_tb_p3.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/sisc_tb_p3.v|
+!i113 0
+R7
+R1
+vstatreg
+R2
+r1
+!s85 0
+31
+!i10b 1
+!s100 N8RNk@:0mCn87Q8FG?AQL3
+IOH8Adj;8Y3CRJ?i7P?Z2D1
+R3
+R4
+8H:/Desktop/DARREN PICK THIS ONE FOR PART3/stratreg.v
+FH:/Desktop/DARREN PICK THIS ONE FOR PART3/stratreg.v
+L0 6
+R5
+R10
+!s107 H:/Desktop/DARREN PICK THIS ONE FOR PART3/stratreg.v|
+!s90 -reportprogress|300|-work|work|H:/Desktop/DARREN PICK THIS ONE FOR PART3/stratreg.v|
+!i113 0
+R7
+R1

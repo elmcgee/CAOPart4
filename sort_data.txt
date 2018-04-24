@@ -1,0 +1,50 @@
+
+// ECE:3350 SISC processor project
+
+// Example data for the bubble sort program.
+
+//
+
+/*00000006 // :0  N = 6
+
+00000005 // :1  List: [5, -2, 18, 10, 0, -7]
+
+FFFFFFFE // :2
+
+00000012 // :3  Expected memory contents after execution: [-7, -2, 0, 5, 10, 18]
+
+0000000A // :4
+
+00000000 // :5
+
+FFFFFFF9 // :6*/
+
+
+
+00000000	//00: NOP
+10000006	//01: LDA	R0,#0006
+10100005	//02: LDA, R1, #0005
+1020FFFE	//03: LDA  R2, #-2
+10300018	//04: LDA  R3, 18
+10400010	//05: LDA R4, 10
+10500000	//06: LDA R5, 0
+1060FFF9	//07: LDA R6, -7
+			
+
+80712002	//08: L1: SUB  R7 <- R1-R2
+51000001	//09: BRR	If R7<0, branch to L2
+30120000	//0A: SWP  R1, R2
+80723002	//0B: L2: SUB  R7 <- R2-R3
+51000001	//0C: BRR	If R7<0, branch to L3
+30230000	//0D: SWP  R2, R3
+80734002	//0E: L3: SUB R7 <- R3-R4
+51000001	//0F: BRR	If R7<0, branch to L4
+30340000	//10: SWP  R3, R4
+80745002	//11: L4: SUB R7 <- R4-R5
+51000001	//12  BRR If R7<0, branch to L5
+30450000	//13: SWP  R4, R5
+80756002	//14: L5: SUB  R7 <- R5-R6
+51000001	//15: BRR If R7<0, branch to L6
+30560000	//16: SWP  R5, R6
+8800FFFF	//1A: L6:  ADI R0, R0,-1
+60000008	//1B: BNE If R0>0, go to L1
